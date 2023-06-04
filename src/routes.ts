@@ -1,9 +1,9 @@
-import { Request, Response, Router } from 'express'
+import { Router } from 'express'
+import { CreateUserController } from './controllers/user/CreateUserController'
 
 const router = Router()
 
-router.get('/teste', (req: Request, res: Response) => {
-  throw new Error('Chegando um novo error')
-})
+// -- USER --
+router.post('/user', new CreateUserController().handle)
 
 export { router }
