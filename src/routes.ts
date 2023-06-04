@@ -1,11 +1,9 @@
-import { Request, Response, Router } from "express";
+import { Request, Response, Router } from 'express'
 
-const router = Router();
+const router = Router()
 
 router.get('/teste', (req: Request, res: Response) => {
-  return res.json({
-    ok: true
-  })
+  throw new Error('Chegando um novo error')
 })
 
 export { router }
