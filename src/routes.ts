@@ -1,9 +1,12 @@
 import { Router } from 'express'
 import { CreateUserController } from './controllers/user/CreateUserController'
+import { AuthUserController } from './controllers/user/AuthUserController'
+import { isAuthenticate } from './middlewares/isAuthenticate'
 
 const router = Router()
 
 // -- USER --
-router.post('/user', new CreateUserController().handle)
+router.post('/register', new CreateUserController().handle)
+router.post('/login', isAuthenticate, new AuthUserController().handle)
 
 export { router }
