@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from 'express'
+import express from 'express'
 import 'express-async-errors'
 
 import cors from 'cors'
@@ -6,6 +6,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 
 import { router } from './routes'
+import { errorHandling } from './middlewares/errorHandling'
 
 dotenv.config()
 
@@ -17,18 +18,7 @@ app.use(express.json())
 
 app.use(router)
 
-app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  if (err instanceof Error) {
-    return res.status(400).json({
-      error: err.message,
-    })
-  }
-
-  return res.status(500).json({
-    status: 'Error',
-    message: 'Internal server error',
-  })
-})
+app.use(errorHandling)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {
