@@ -10,6 +10,7 @@ import { DetailUserController } from './controllers/user/DetailUserController'
 import { CreateCategoryController } from './controllers/category/CreateCategoryController'
 import { ListCategoryController } from './controllers/category/ListCategoryController'
 import { CreateProductController } from './controllers/product/CreateProductController'
+import { ListByCategoryController } from './controllers/product/ListByCategoryController'
 
 const router = Router()
 
@@ -30,6 +31,11 @@ router.post(
   isAuthenticate,
   uploadProductPicture.single('banner'),
   new CreateProductController().handle,
+)
+router.get(
+  '/category/product',
+  isAuthenticate,
+  new ListByCategoryController().handle,
 )
 
 export { router }
