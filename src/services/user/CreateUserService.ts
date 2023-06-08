@@ -9,10 +9,6 @@ interface CreateUserRequest {
 
 export class CreateUserService {
   async execute({ name, email, password }: CreateUserRequest) {
-    if (!email) {
-      throw new Error('Email incorrect')
-    }
-
     const userAlreadyExists = await prismaClient.user.findUnique({
       where: {
         email,
