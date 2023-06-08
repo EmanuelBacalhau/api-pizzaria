@@ -1,6 +1,8 @@
 import express from 'express'
 import 'express-async-errors'
 
+import path from 'path'
+
 import cors from 'cors'
 
 import dotenv from 'dotenv'
@@ -11,6 +13,12 @@ import { errorHandling } from './middlewares/errorHandling'
 dotenv.config()
 
 const app = express()
+
+// product pictures
+app.use(
+  '/files',
+  express.static(path.resolve(__dirname, '../uploads/productPicture')),
+)
 
 app.use(cors())
 
