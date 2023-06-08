@@ -5,11 +5,27 @@ export class CreateProductController {
   async handle(req: Request, res: Response) {
     const { name, price, description, categoryId } = req.body
 
-    const createProductService = new CreateProductService()
+    if (name === '') {
+      throw new Error('Name is required')
+    }
+
+    if (price === '') {
+      throw new Error('Price is required')
+    }
+
+    if (description === '') {
+      throw new Error('Description is required')
+    }
+
+    if (categoryId === '') {
+      throw new Error('Category id is required')
+    }
 
     if (!req.file) {
       throw new Error('Banner is required')
     }
+
+    const createProductService = new CreateProductService()
 
     const { originalname } = req.file
 
