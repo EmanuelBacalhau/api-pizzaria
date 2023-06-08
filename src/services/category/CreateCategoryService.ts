@@ -6,10 +6,6 @@ interface CreateCategoryRequest {
 
 export class CreateCategoryService {
   async execute({ name }: CreateCategoryRequest) {
-    if (name === '') {
-      throw new Error('Name is required')
-    }
-
     const category = await prismaClient.category.create({
       data: {
         name,

@@ -5,6 +5,10 @@ export class CreateCategoryController {
   async handle(req: Request, res: Response) {
     const { name } = req.body
 
+    if (name === '') {
+      throw new Error('Name is required')
+    }
+
     const createCategoryService = new CreateCategoryService()
 
     const category = await createCategoryService.execute({ name })
