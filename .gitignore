@@ -128,3 +128,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# Uploads
+uploads/productPicture/*.png
+uploads/productPicture/*.jpg
+uploads/productPicture/*.png
