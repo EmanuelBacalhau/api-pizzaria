@@ -5,19 +5,19 @@ export class CreateProductController {
   async handle(req: Request, res: Response) {
     const { name, price, description, categoryId } = req.body
 
-    if (name === '') {
+    if (!name || name === '') {
       throw new Error('Name is required')
     }
 
-    if (price === '') {
+    if (!price || price === '') {
       throw new Error('Price is required')
     }
 
-    if (description === '') {
+    if (!description || description === '') {
       throw new Error('Description is required')
     }
 
-    if (categoryId === '') {
+    if (!categoryId || categoryId === '') {
       throw new Error('Category id is required')
     }
 
@@ -27,13 +27,13 @@ export class CreateProductController {
 
     const createProductService = new CreateProductService()
 
-    const { originalname } = req.file
+    const { filename: banner } = req.file
 
     const product = await createProductService.execute({
       name,
       price,
       description,
-      banner: originalname,
+      banner,
       categoryId,
     })
 
