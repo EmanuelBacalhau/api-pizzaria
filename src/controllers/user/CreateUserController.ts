@@ -6,15 +6,15 @@ export class CreateUserController {
     const { name, email, password } = req.body
 
     if (!name) {
-      throw new Error('Email incorrect')
+      throw new Error('Name is required')
     }
 
     if (!email) {
-      throw new Error('Email incorrect')
+      throw new Error('Email is required')
     }
 
     if (!password) {
-      throw new Error('Email incorrect')
+      throw new Error('Password is required')
     }
 
     const createUserService = new CreateUserService()
