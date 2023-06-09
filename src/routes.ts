@@ -14,6 +14,7 @@ import { CreateProductController } from './controllers/product/CreateProductCont
 import { ListByCategoryController } from './controllers/product/ListByCategoryController'
 import { CreateOrderController } from './controllers/order/CreateOrderController'
 import { FinishOrderController } from './controllers/order/FinishOrderController'
+import { RemoveOrderController } from './controllers/order/RemoveOrderController'
 
 const router = Router()
 
@@ -47,6 +48,11 @@ router.patch(
   '/order/finish',
   isAuthenticate,
   new FinishOrderController().handle,
+)
+router.delete(
+  '/order/remove',
+  isAuthenticate,
+  new RemoveOrderController().handle,
 )
 
 export { router }
