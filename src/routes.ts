@@ -49,18 +49,18 @@ router.post(
 
 // -- ORDER --
 router.get('/orders', isAuthenticate, new ListOrderController().handle)
+router.get('/order/detail', isAuthenticate, new DetailOrderController().handle)
 router.post('/order', isAuthenticate, new CreateOrderController().handle)
 router.patch('/order/send', isAuthenticate, new SendOrderController().handle)
-router.delete(
-  '/order/remove',
-  isAuthenticate,
-  new RemoveOrderController().handle,
-)
-router.get('/order/detail', isAuthenticate, new DetailOrderController().handle)
 router.patch(
   '/order/finish',
   isAuthenticate,
   new FinishOrderController().handle,
+)
+router.delete(
+  '/order/remove',
+  isAuthenticate,
+  new RemoveOrderController().handle,
 )
 
 // -- ORDER ITEM --
