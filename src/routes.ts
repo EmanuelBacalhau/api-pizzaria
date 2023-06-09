@@ -13,7 +13,7 @@ import { ListCategoryController } from './controllers/category/ListCategoryContr
 import { CreateProductController } from './controllers/product/CreateProductController'
 import { ListByCategoryController } from './controllers/product/ListByCategoryController'
 import { CreateOrderController } from './controllers/order/CreateOrderController'
-import { FinishOrderController } from './controllers/order/FinishOrderController'
+import { SendOrderController } from './controllers/order/SendOrderController'
 import { RemoveOrderController } from './controllers/order/RemoveOrderController'
 import { CreateOrderItemController } from './controllers/orderItem/CreateOrderItemController'
 import { RemoveOrderItemController } from './controllers/orderItem/RemoveOrderItemController'
@@ -46,11 +46,7 @@ router.get(
 
 // -- ORDER --
 router.post('/order', isAuthenticate, new CreateOrderController().handle)
-router.patch(
-  '/order/finish',
-  isAuthenticate,
-  new FinishOrderController().handle,
-)
+router.patch('/order/finish', isAuthenticate, new SendOrderController().handle)
 router.delete(
   '/order/remove',
   isAuthenticate,

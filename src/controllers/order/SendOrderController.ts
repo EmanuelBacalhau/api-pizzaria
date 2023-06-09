@@ -1,11 +1,11 @@
 import { Request, Response } from 'express'
-import { FinishOrderService } from '../../services/order/FinishOrderService'
+import { SendOrderService } from '../../services/order/SendOrderService'
 
-export class FinishOrderController {
+export class SendOrderController {
   async handle(req: Request, res: Response) {
     const orderId = req.query.orderId as string
 
-    const finishOrderService = new FinishOrderService()
+    const finishOrderService = new SendOrderService()
 
     const order = await finishOrderService.execute({ orderId })
 
