@@ -46,7 +46,7 @@ router.get(
 
 // -- ORDER --
 router.post('/order', isAuthenticate, new CreateOrderController().handle)
-router.patch('/order/finish', isAuthenticate, new SendOrderController().handle)
+router.patch('/order/send', isAuthenticate, new SendOrderController().handle)
 router.delete(
   '/order/remove',
   isAuthenticate,
