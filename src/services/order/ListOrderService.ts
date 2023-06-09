@@ -8,7 +8,7 @@ export class ListOrderService {
         draft: false,
       },
       orderBy: {
-        createdAt: 'asc',
+        updatedAt: 'asc',
       },
       select: {
         id: true,
