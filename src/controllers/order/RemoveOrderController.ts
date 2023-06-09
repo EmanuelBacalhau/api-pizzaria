@@ -5,6 +5,10 @@ export class RemoveOrderController {
   async handle(req: Request, res: Response) {
     const orderId = req.query.orderId as string
 
+    if (!orderId || orderId === '') {
+      throw new Error('Order id is required')
+    }
+
     const removeOrderService = new RemoveOrderService()
 
     const order = await removeOrderService.execute({ orderId })
