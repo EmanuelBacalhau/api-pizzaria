@@ -15,6 +15,7 @@ import { ListByCategoryController } from './controllers/product/ListByCategoryCo
 import { CreateOrderController } from './controllers/order/CreateOrderController'
 import { FinishOrderController } from './controllers/order/FinishOrderController'
 import { RemoveOrderController } from './controllers/order/RemoveOrderController'
+import { CreateOrderItemController } from './controllers/orderItem/CreateOrderItemController'
 
 const router = Router()
 
@@ -55,4 +56,10 @@ router.delete(
   new RemoveOrderController().handle,
 )
 
+// -- ORDER ITEM --
+router.post(
+  '/orderItem',
+  isAuthenticate,
+  new CreateOrderItemController().handle,
+)
 export { router }
