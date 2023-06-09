@@ -5,6 +5,10 @@ export class ListByCategoryController {
   async handle(req: Request, res: Response) {
     const categoryId: string = req.query.categoryId as string
 
+    if (!categoryId || categoryId === '') {
+      throw new Error('Category id is required')
+    }
+
     const listByCategoryService = new ListByCategoryService()
 
     const products = await listByCategoryService.execute({ categoryId })
