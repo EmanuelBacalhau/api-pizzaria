@@ -7,6 +7,9 @@ export class ListOrderService {
         status: false,
         draft: false,
       },
+      orderBy: {
+        createdAt: 'asc',
+      },
       select: {
         id: true,
         name: true,
