@@ -3,15 +3,17 @@ import { Router } from 'express'
 import multer from 'multer'
 import { multerConfig } from './config/multer'
 
+import { isAuthenticate } from './middlewares/isAuthenticate'
+
 import { CreateUserController } from './controllers/user/CreateUserController'
 import { AuthUserController } from './controllers/user/AuthUserController'
-import { isAuthenticate } from './middlewares/isAuthenticate'
 import { DetailUserController } from './controllers/user/DetailUserController'
 import { CreateCategoryController } from './controllers/category/CreateCategoryController'
 import { ListCategoryController } from './controllers/category/ListCategoryController'
 import { CreateProductController } from './controllers/product/CreateProductController'
 import { ListByCategoryController } from './controllers/product/ListByCategoryController'
 import { CreateOrderController } from './controllers/order/CreateOrderController'
+import { FinishOrderController } from './controllers/order/FinishOrderController'
 
 const router = Router()
 
@@ -41,5 +43,10 @@ router.get(
 
 // -- ORDER --
 router.post('/order', isAuthenticate, new CreateOrderController().handle)
+router.patch(
+  '/order/finish',
+  isAuthenticate,
+  new FinishOrderController().handle,
+)
 
 export { router }
