@@ -17,34 +17,36 @@ import { SendOrderController } from './controllers/order/SendOrderController'
 import { RemoveOrderController } from './controllers/order/RemoveOrderController'
 import { CreateOrderItemController } from './controllers/orderItem/CreateOrderItemController'
 import { RemoveOrderItemController } from './controllers/orderItem/RemoveOrderItemController'
+import { ListOrderController } from './controllers/order/ListOrderController'
 
 const router = Router()
 
 const uploadProductPicture = multer(multerConfig.upload('productPicture'))
 
 // -- USER --
-router.post('/register', new CreateUserController().handle)
-router.post('/login', new AuthUserController().handle)
 router.get('/me', isAuthenticate, new DetailUserController().handle)
+router.post('/login', new AuthUserController().handle)
+router.post('/register', new CreateUserController().handle)
 
 // -- CATEGORY --
-router.post('/category', isAuthenticate, new CreateCategoryController().handle)
 router.get('/category', isAuthenticate, new ListCategoryController().handle)
+router.post('/category', isAuthenticate, new CreateCategoryController().handle)
 
 // -- PRODUCT --
+router.get(
+  '/category/products',
+  isAuthenticate,
+  new ListByCategoryController().handle,
+)
 router.post(
   '/product',
   isAuthenticate,
   uploadProductPicture.single('banner'),
   new CreateProductController().handle,
 )
-router.get(
-  '/category/product',
-  isAuthenticate,
-  new ListByCategoryController().handle,
-)
 
 // -- ORDER --
+router.get('/orders', isAuthenticate, new ListOrderController().handle)
 router.post('/order', isAuthenticate, new CreateOrderController().handle)
 router.patch('/order/send', isAuthenticate, new SendOrderController().handle)
 router.delete(
